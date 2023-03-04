@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-    <title>Pokedex Studi</title>
+    <title>Pokedex Studi - Créer un Pokemon</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,34 +31,36 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Types</a>
                 </li>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Chercher</button>
-            </form>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Chercher</button>
+                </form>
         </div>
     </div>
 </nav>
 
 <?php
-    require("PokemonsManager.php");
-    $manager = new PokemonsManager();
-    $pokemons = $manager->getAll();
+require("PokemonsManager.php");
+$manager = new PokemonsManager();
 ?>
 
 <main class="container">
-    <section class="d-flex flex-wrap justify-content-center">
-    <?php foreach ($pokemons as $pokemon): ?>
-    <div class="card m-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="<?= $pokemon->getName() ?>">
-        <div class="card-body">
-            <h5 class="card-title"><?= $pokemon->getNumber() ?># <?= $pokemon->getName() ?></h5>
-            <p class="card-text"><?= $pokemon->getDescription() ?></p>
-            <a href="#" class="btn btn-warning">Modifier</a>
-        </div>
-    </div>
-    <?php endforeach ?>
-    </section>
-    <a href="create.php" class="btn btn-success">Créer un Pokemon</a>
+    <form method="post" enctype="multipart/form-data">
+        <label for="number" class="form-label">Numéro</label>
+        <input type="number" name="number" placeholder="Le numéro du Pokemon" id="number" class="form-control" min=1 max=901>
+        <label for="name" class="form-label">Nom</label>
+        <input type="number" name="name" placeholder="Le nom du Pokemon" id="name" class="form-control" minlength="3"  maxlength="40">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" id="description" class="form-control" rows="6" placeholder="La description du Pokemon" minlength="10" maxlength="200"></textarea>
+        <label for="type1" class="form-label">Type</label>
+        <select name="type1" id="type1" class="form-select">
+
+        </select>
+        <br>
+        <label for="image" class="form-label">Image</label>
+        <input type="file" name="image" id="image" class="form-control">
+        <input type="submit" class="btn btn-success mt-3" value="Créer">
+    </form>
 </main>
 </body>
 </html>
