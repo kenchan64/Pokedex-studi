@@ -1,1 +1,1 @@
-﻿# Pokedex-studi.github.io
+﻿# Pokedex-studi.git
