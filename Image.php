@@ -68,5 +68,7 @@ class Image
     public function setPath($path)
     {
         $this->path = $path;
+
+        return $this;
     }
 }
