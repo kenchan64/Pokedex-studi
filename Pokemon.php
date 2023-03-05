@@ -8,18 +8,44 @@ class Pokemon
     private $type1;
     private $type2;
     private $id;
+    private $image;
 
-    public function __construct(array $data) {
+    /* $data = [
+        "id" => 1,
+        "number" => 1,
+        "name" => "Bulbizarre",
+        //...
+    ]*/
+
+    public function __construct(array $data)
+    {
         $this->hydrate($data);
     }
 
-    public function hydrate(array $data) {
+    public function hydrate(array $data)
+    {
         foreach ($data as $key => $value) {
             $method = "set" . ucfirst($key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     /**

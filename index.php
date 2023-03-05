@@ -31,32 +31,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Types</a>
                 </li>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Chercher</button>
-            </form>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Chercher</button>
+                </form>
         </div>
     </div>
 </nav>
 
 <?php
-    require("PokemonsManager.php");
-    $manager = new PokemonsManager();
-    $pokemons = $manager->getAll();
+require("PokemonsManager.php");
+$manager = new PokemonsManager();
+$pokemons = $manager->getAll();
 ?>
 
 <main class="container">
     <section class="d-flex flex-wrap justify-content-center">
-    <?php foreach ($pokemons as $pokemon): ?>
-    <div class="card m-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="<?= $pokemon->getName() ?>">
-        <div class="card-body">
-            <h5 class="card-title"><?= $pokemon->getNumber() ?># <?= $pokemon->getName() ?></h5>
-            <p class="card-text"><?= $pokemon->getDescription() ?></p>
-            <a href="#" class="btn btn-warning">Modifier</a>
-        </div>
-    </div>
-    <?php endforeach ?>
+        <?php foreach ($pokemons as $pokemon): ?>
+            <div class="card m-5" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="<?= $pokemon->getName() ?>">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $pokemon->getNumber() ?># <?= $pokemon->getName() ?></h5>
+                    <p class="card-text"><?= $pokemon->getDescription() ?></p>
+                    <a href="#" class="btn btn-warning">Modifier</a>
+                </div>
+            </div>
+        <?php endforeach ?>
     </section>
     <a href="create.php" class="btn btn-success">Créer un Pokemon</a>
 </main>

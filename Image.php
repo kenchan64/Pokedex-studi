@@ -1,12 +1,10 @@
 <?php
 
-class Type
+class Image
 {
     private $id;
     private $name;
-    private $color;
-
-    // $type = new Type(["id" => 1, "name" => "Electrik", "color" => "yellow"])
+    private $path;
 
     public function __construct(array $data)
     {
@@ -22,6 +20,7 @@ class Type
             }
         }
     }
+
 
     /**
      * @return mixed
@@ -58,17 +57,16 @@ class Type
     /**
      * @return mixed
      */
-    public function getColor()
+    public function getPath()
     {
-        return $this->color;
+        return $this->path;
     }
 
     /**
-     * @param mixed $color
+     * @param mixed $path
      */
-    public function setColor($color)
+    public function setPath($path)
     {
-        $this->color = $color;
+        $this->path = $path;
     }
-
 }

@@ -1,24 +1,26 @@
 <?php
 
-require ("Pokemon.php");
+require("Pokemon.php");
 
 class PokemonsManager
 {
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $dbName = "studi-pokedex";
         $port = 3306;
         $username = "root";
         $password = "";
         try {
             $this->db = new PDO("mysql:host=localhost;dbname=$dbName;port=$port", $username, $password);
-        } catch(PDOException $exception) {
-           echo $exception->getMessage();
+        } catch (PDOException $exception) {
+            echo $exception->getMessage();
         }
     }
 
-    public function create(Pokemon $pokemon) {
+    public function create(Pokemon $pokemon)
+    {
         $req = $this->db->prepare("INSERT INTO `pokemon` (number, name, description, type1, type2) VALUE (:number, :name, :description, :type1, :type2)");
 
         $req->bindValue(":number", $pokemon->getNumber(), PDO::PARAM_INT);
@@ -30,7 +32,8 @@ class PokemonsManager
         $req->execute();
     }
 
-    public function get($id) {
+    public function get($id)
+    {
         $req = $this->db->prepare("SELECT * FROM `pokemon` WHERE id = :id");
         $req->bindValue(":id", $id, PDO::PARAM_INT);
         $data = $req->fetch();
@@ -38,7 +41,8 @@ class PokemonsManager
         return $pokemon;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         $pokemons = [];
         $req = $this->db->query("SELECT * FROM `pokemon` ORDER BY number");
         $datas = $req->fetchAll();
@@ -49,7 +53,8 @@ class PokemonsManager
         return $pokemons;
     }
 
-    public function getAllByString($input) {
+    public function getAllByString($input)
+    {
         $pokemons = [];
         $req = $this->db->prepare("SELECT * FROM `pokemon` WHERE name LIKE :input ORDER BY number");
         $req->bindValue(":input", $input, PDO::PARAM_STR);
@@ -61,7 +66,8 @@ class PokemonsManager
         return $pokemons;
     }
 
-    public function getAllByType($input) {
+    public function getAllByType($input)
+    {
         $pokemons = [];
         $req = $this->db->prepare("SELECT * FROM `pokemon` WHERE type LIKE :input ORDER BY number");
         $req->bindValue(":input", $input, PDO::PARAM_STR);
@@ -73,7 +79,8 @@ class PokemonsManager
         return $pokemons;
     }
 
-    public function update(Pokemon $pokemon) {
+    public function update(Pokemon $pokemon)
+    {
         $req = $this->db->prepare("UPDATE `pokemon` SET number = :number, name = :name, description = :description, type1 = :type1, type2 = :type2");
 
         $req->bindValue(":number", $pokemon->getNumber(), PDO::PARAM_INT);
@@ -85,7 +92,8 @@ class PokemonsManager
         $req->execute();
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $req = $this->db->prepare("DELETE FROM `pokemon` WHERE id = :id");
         $req->bindValue(":id", $id, PDO::PARAM_INT);
         $req->execute();
